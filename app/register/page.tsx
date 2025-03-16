@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
+import Link from "next/link";
 export default function Register() {
   const [message, setMessage] = useState("");
 
@@ -9,7 +9,7 @@ export default function Register() {
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
-    const response = await fetch("/api/auth/register", {
+    const response = await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify(Object.fromEntries(formData)),
       headers: { "Content-Type": "application/json" },
@@ -43,8 +43,28 @@ export default function Register() {
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
           Register
         </button>
+        <div className="flex gap-4 justify-center">
+          <Link
+            href="/login"
+            className="bg-green-500 text-white p-2 rounded-md"
+          >
+            Login
+          </Link>
+          <Link
+            href="/userList"
+            className="bg-green-500 text-white p-2 rounded-md"
+          >
+            User List
+          </Link>
+        </div>
       </form>
-      <p>{message}</p>
+      <p
+        className={
+          message === "Register successful" ? "text-green-400" : "text-red-400"
+        }
+      >
+        {message}
+      </p>
     </div>
   );
 }
