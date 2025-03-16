@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+
 export default function Register() {
   const [message, setMessage] = useState("");
 
@@ -17,6 +19,8 @@ export default function Register() {
 
     const result = await response.json();
     setMessage(result.message);
+
+    redirect("/login");
   }
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-4">
@@ -27,18 +31,21 @@ export default function Register() {
           placeholder="Name"
           className="border-2 border-gray-300 rounded-md p-2"
           name="name"
+          required
         />
         <input
           type="email"
           placeholder="Email"
           className="border-2 border-gray-300 rounded-md p-2"
           name="email"
+          required
         />
         <input
           type="password"
           placeholder="Password"
           className="border-2 border-gray-300 rounded-md p-2"
           name="password"
+          required
         />
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
           Register

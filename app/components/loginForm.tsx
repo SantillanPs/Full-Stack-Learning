@@ -42,7 +42,7 @@ const LoginForm = () => {
       />
       {error && <p className="text-red-500">{error}</p>}
       <button
-        className="bg-slate-800 p-2 rounded-md hover:bg-slate-700"
+        className="bg-blue-800 p-2 rounded-md hover:bg-blue-700 cursor-pointer"
         type="submit"
       >
         Submit
